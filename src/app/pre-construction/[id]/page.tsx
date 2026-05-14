@@ -405,10 +405,10 @@ export default async function ProjectDetailPage({
                   <p className="text-xs font-medium" style={{ color: 'var(--color-gray)' }}>
                     Prefer to call?
                   </p>
-                  <p className="text-sm text-white font-medium">+44 20 3444 5566</p>
+                  <p className="text-sm text-white font-medium">+1 (858) 877-3786</p>
                 </div>
                 <a
-                  href="tel:+442034445566"
+                  href="tel:+18588773786"
                   className="w-9 h-9 flex items-center justify-center rounded-[2px] transition-all duration-200 hover:scale-105"
                   style={{
                     background: 'rgba(201,168,76,0.1)',

@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, BedDouble, Bath, Maximize2, Home, CheckCircle2, MapPin, TrendingUp, Calendar, Building2 } from 'lucide-react';
+import ComparablesSection from '@/components/sections/ComparablesSection';
 import { Badge } from '@/components/ui/badge';
 import PropertyGallery from '@/components/sections/PropertyGallery';
 import PropertyEnquiry from '@/components/sections/PropertyEnquiry';
@@ -351,7 +352,10 @@ export default async function PropertyDetailPage({
               </div>
             </div>
 
-            {/* 6. Location section */}
+            {/* 6. Comparables */}
+            <ComparablesSection />
+
+            {/* 7. Location section */}
             <div className="flex flex-col gap-5">
               <h2
                 className="text-2xl font-light"
@@ -421,7 +425,7 @@ export default async function PropertyDetailPage({
               </div>
             </div>
 
-            {/* 7. Investment highlights (off-plan only) */}
+            {/* 8. Investment highlights (off-plan only) */}
             {isOffPlan && (
               <div className="flex flex-col gap-5">
                 <h2

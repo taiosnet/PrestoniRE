@@ -171,7 +171,7 @@ export default function EnquiryCard({ project }: { project: Project }) {
         </Button>
 
         <a
-          href={`https://wa.me/442034445566?text=${encodeURIComponent(
+          href={`https://wa.me/18588773786?text=${encodeURIComponent(
             `Hi, I'm interested in ${project.name} (${project.location}, ${project.country}).`
           )}`}
           target="_blank"

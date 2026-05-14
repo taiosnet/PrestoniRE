@@ -230,14 +230,14 @@ export default function PreConstructionPage() {
 
             <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
               <a
-                href="tel:+442034445566"
+                href="tel:+18588773786"
                 className="btn-outline flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" aria-hidden="true" />
                 Call Us
               </a>
               <a
-                href="https://wa.me/442034445566"
+                href="https://wa.me/18588773786"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-[2px] text-sm font-medium tracking-widest uppercase transition-all duration-300 hover:-translate-y-px"

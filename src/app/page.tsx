@@ -599,7 +599,7 @@ export default function HomePage() {
           >
             {/* Phone */}
             <a
-              href="tel:+17865550100"
+              href="tel:+18588773786"
               className="flex items-center gap-2.5 text-sm font-medium transition-colors duration-200 group"
               style={{ color: 'var(--color-gray)' }}
               aria-label="Call Prestoni"
@@ -619,7 +619,7 @@ export default function HomePage() {
                 </svg>
               </span>
               <span className="group-hover:text-white transition-colors duration-200">
-                +1 (786) 555-0100
+                +1 (858) 877-3786
               </span>
             </a>
 
@@ -632,7 +632,7 @@ export default function HomePage() {
 
             {/* WhatsApp */}
             <a
-              href="https://wa.me/17865550100"
+              href="https://wa.me/18588773786"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 text-sm font-medium transition-colors duration-200 group"

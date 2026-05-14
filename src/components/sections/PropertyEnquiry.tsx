@@ -75,7 +75,7 @@ export default function PropertyEnquiry({ propertyTitle, propertyId }: PropertyE
   const whatsappMessage = encodeURIComponent(
     `I'm interested in ${propertyTitle}. Could you please provide more details?`
   );
-  const whatsappUrl = `https://wa.me/17865550100?text=${whatsappMessage}`;
+  const whatsappUrl = `https://wa.me/18588773786?text=${whatsappMessage}`;
 
   /* ── Success state ──────────────────────────────────────────────────────── */
   if (submitted) {
@@ -318,11 +318,11 @@ export default function PropertyEnquiry({ propertyTitle, propertyId }: PropertyE
             Speak with a Prestoni advisor 24/7
           </p>
           <a
-            href="tel:+17865550100"
+            href="tel:+18588773786"
             className="text-xs font-semibold transition-colors duration-200"
             style={{ color: 'var(--color-gold-light)' }}
           >
-            +1 (786) 555-0100
+            +1 (858) 877-3786
           </a>
         </div>
       </div>
