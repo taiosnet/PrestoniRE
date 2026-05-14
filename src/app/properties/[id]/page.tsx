@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, BedDouble, Bath, Maximize2, Home, CheckCircle2, MapPin, TrendingUp, Calendar, Building2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import PropertyGallery from '@/components/sections/PropertyGallery';
 import PropertyEnquiry from '@/components/sections/PropertyEnquiry';
 import SectionHeader from '@/components/shared/SectionHeader';
@@ -80,7 +79,6 @@ export default async function PropertyDetailPage({
     beds,
     baths,
     sqm,
-    status,
     isOffPlan,
     completionYear,
     developer,
