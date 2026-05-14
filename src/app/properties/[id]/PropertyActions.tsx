@@ -3,19 +3,25 @@
 import { useState } from 'react';
 import { Share2 } from 'lucide-react';
 
-/* ─── ShareButton ────────────────────────────────────────────────────────────── */
+/* ─── Share Button ───────────────────────────────────────────────────────────── */
 
 export function ShareButton() {
+  const handleShare = () => {
+    if (typeof navigator !== 'undefined') {
+      if (navigator.share) {
+        navigator
+          .share({ title: document.title, url: window.location.href })
+          .catch(() => {});
+      } else {
+        navigator.clipboard?.writeText(window.location.href);
+      }
+    }
+  };
+
   return (
     <button
       aria-label="Share this property"
-      onClick={() => {
-        if (typeof navigator !== 'undefined' && navigator.share) {
-          navigator.share({ title: document.title, url: window.location.href }).catch(() => {});
-        } else if (typeof navigator !== 'undefined') {
-          navigator.clipboard?.writeText(window.location.href);
-        }
-      }}
+      onClick={handleShare}
       className="w-10 h-10 rounded-[2px] flex items-center justify-center transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-gold)]"
       style={{
         background: 'rgba(10,10,11,0.72)',
@@ -23,13 +29,21 @@ export function ShareButton() {
         border: '1px solid var(--color-border)',
         color: 'var(--color-gray)',
       }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-gold)';
+        (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(201,168,76,0.5)';
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-gray)';
+        (e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--color-border)';
+      }}
     >
       <Share2 className="w-4 h-4" aria-hidden="true" />
     </button>
   );
 }
 
-/* ─── FavouriteButton ────────────────────────────────────────────────────────── */
+/* ─── Favourite Button ───────────────────────────────────────────────────────── */
 
 export function FavouriteButton() {
   const [isFav, setIsFav] = useState(false);
@@ -45,6 +59,7 @@ export function FavouriteButton() {
         backdropFilter: 'blur(10px)',
         border: `1px solid ${isFav ? 'rgba(255,69,58,0.5)' : 'var(--color-border)'}`,
         color: isFav ? '#FF453A' : 'var(--color-gray)',
+        transition: 'color 0.2s, border-color 0.2s, background 0.2s',
       }}
     >
       <svg
@@ -54,6 +69,7 @@ export function FavouriteButton() {
         stroke="currentColor"
         strokeWidth={1.75}
         aria-hidden="true"
+        style={{ transition: 'fill 0.2s' }}
       >
         <path
           strokeLinecap="round"
