@@ -268,3 +268,56 @@ input:focus, textarea:focus, select:focus {
 .nav-link.active::after {
   width: 100%;
 }
+
+/* ─── Footer utility classes (server component safe — no JS events) ──────────── */
+
+/* Social icon buttons */
+.footer-social-icon {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  color: var(--color-gray);
+}
+
+.footer-social-icon:hover {
+  color: var(--color-gold);
+  border-color: rgba(201, 168, 76, 0.4);
+  background: rgba(201, 168, 76, 0.06);
+}
+
+/* Column nav links */
+.footer-col-link {
+  color: var(--color-gray);
+  transition: color 0.2s ease;
+}
+
+.footer-col-link:hover {
+  color: var(--color-gold-light);
+}
+
+/* Legal links */
+.footer-legal-link {
+  color: var(--color-muted);
+  transition: color 0.2s ease;
+}
+
+.footer-legal-link:hover {
+  color: var(--color-gold);
+}
+
+/* Newsletter input — keeps dark focus ring without JS */
+.footer-newsletter-input {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  color: var(--color-white);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.footer-newsletter-input::placeholder {
+  color: var(--color-muted);
+}
+
+.footer-newsletter-input:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+}
