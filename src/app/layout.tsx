@@ -3,6 +3,8 @@ import { Inter, Cormorant_Garamond, Cinzel, Cinzel_Decorative } from 'next/font/
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import NewsletterSection from '@/components/sections/NewsletterSection';
+import NewsletterPopup from '@/components/sections/NewsletterPopup';
 
 /* ─── Fonts (self-hosted via next/font — no render-blocking request) ─────────── */
 
@@ -127,7 +129,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
 
+        <NewsletterSection />
         <Footer />
+        <NewsletterPopup />
       </body>
     </html>
   );

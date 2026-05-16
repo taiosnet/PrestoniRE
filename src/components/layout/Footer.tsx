@@ -86,6 +86,13 @@ const FOOTER_COLUMNS = [
       { label: 'Investment Guide', href: '/guides/investment' },
     ],
   },
+  {
+    heading: 'Partners',
+    links: [
+      { label: 'TAIOS Technology', href: '/taios' },
+      { label: 'Wealth & Rich', href: '/wealth' },
+    ],
+  },
 ];
 
 const LEGAL_LINKS = [
@@ -185,7 +192,7 @@ export default function Footer() {
           </div>
 
           {/* Link Columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-6">
             {FOOTER_COLUMNS.map((col) => (
               <div key={col.heading} className="flex flex-col gap-4">
                 <h3
