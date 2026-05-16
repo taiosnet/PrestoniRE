@@ -159,7 +159,7 @@ export default async function ProjectDetailPage({
     <div className="min-h-screen" style={{ background: 'var(--color-bg)' }}>
 
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
-      <section className="relative h-[500px] overflow-hidden">
+      <section className="relative h-[500px] overflow-hidden -mt-20">
         <Image
           src={project.coverImage}
           alt={project.name}
@@ -184,7 +184,7 @@ export default async function ProjectDetailPage({
           {/* Back link */}
           <Link
             href="/pre-construction"
-            className="absolute top-24 left-6 lg:left-16 flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 hover:text-[var(--color-gold)]"
+            className="absolute top-8 left-6 lg:left-16 flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 hover:text-[var(--color-gold)]"
             style={{ color: 'rgba(255,255,255,0.65)' }}
           >
             <ChevronLeft className="w-4 h-4" />

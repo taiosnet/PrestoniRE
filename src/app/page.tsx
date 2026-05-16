@@ -53,7 +53,7 @@ export default function HomePage() {
       {/* ════════════════════════════════════════════════════════════════════════ */}
       <section
         aria-label="Hero"
-        className="relative flex flex-col items-center justify-center min-h-screen w-full overflow-hidden"
+        className="relative flex flex-col items-center justify-center min-h-screen w-full overflow-hidden -mt-20"
       >
         {/* Background image */}
         <div className="absolute inset-0 z-0">

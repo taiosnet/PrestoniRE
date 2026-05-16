@@ -569,7 +569,7 @@ export default function BuyPageClient() {
     >
       {/* ── Page Header ──────────────────────────────────────────────────── */}
       <div
-        className="border-b border-[var(--color-border)] px-6 pt-28 pb-10 lg:px-12"
+        className="border-b border-[var(--color-border)] px-6 py-10 lg:px-12"
         style={{ background: 'var(--color-surface)' }}
       >
         <div className="max-w-screen-xl mx-auto">
