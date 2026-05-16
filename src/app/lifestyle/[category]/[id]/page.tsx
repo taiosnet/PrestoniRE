@@ -2,6 +2,7 @@ import { ALL_LIFESTYLE_ASSETS, LUXURY_CARS, LUXURY_WATCHES, LUXURY_YACHTS, LUXUR
 import { LuxuryAsset } from '@/lib/lifestyle-types';
 import AssetPriceChart from '@/components/sections/AssetPriceChart';
 import LuxuryAssetCard from '@/components/shared/LuxuryAssetCard';
+import AssetSaveButton from '@/components/sections/AssetSaveButton';
 import { ShieldCheck, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -573,7 +574,14 @@ export default async function AssetDetailPage({
 
           {/* ── Right column: sticky enquiry sidebar ─────────────────────── */}
           <div className="lg:w-80 xl:w-96 flex-shrink-0">
-            <div className="sticky top-24">
+            <div className="sticky top-24 flex flex-col gap-4">
+              <AssetSaveButton
+                assetId={asset.id}
+                assetCategory={CATEGORY_HREFS[asset.category]}
+                assetTitle={asset.title}
+                assetPrice={asset.price}
+                assetImage={asset.mainImage}
+              />
               <EnquirySidebar asset={asset} />
             </div>
           </div>

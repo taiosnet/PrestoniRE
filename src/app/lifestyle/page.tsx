@@ -6,9 +6,20 @@ import LuxuryAssetCard from '@/components/shared/LuxuryAssetCard';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Lifestyle | Prestoni',
+  title: 'Luxury Lifestyle Assets — Cars, Watches, Yachts, Jets',
   description:
-    'Curate every element of your world — exotic cars, investment-grade timepieces, superyachts, and private jets. The complete luxury lifestyle platform.',
+    'The complete luxury lifestyle platform — buy exotic cars, investment-grade watches, superyachts, and private jets alongside the world\'s finest real estate. Track your entire portfolio in one place.',
+  keywords: [
+    'luxury lifestyle assets', 'exotic cars watches yachts jets', 'UHNW lifestyle', 'luxury portfolio',
+    'Prestoni lifestyle', 'buy luxury assets', 'complete luxury lifestyle',
+  ],
+  openGraph: {
+    title: 'Luxury Lifestyle Assets | Prestoni',
+    description: 'The complete luxury lifestyle platform — exotic cars, watches, yachts, jets, and real estate in one curated destination.',
+    images: [{ url: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1200', width: 1200, height: 630, alt: 'Luxury Lifestyle — Prestoni' }],
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image', title: 'Luxury Lifestyle Assets | Prestoni', description: 'The complete luxury lifestyle platform — cars, watches, yachts, jets, and real estate.' },
 };
 
 const PORTFOLIO_ROWS = [

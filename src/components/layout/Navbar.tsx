@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { createClient } from '@/lib/supabase/client';
+import type { User } from '@supabase/supabase-js';
 
 /* ─── Types ──────────────────────────────────────────────────────────────────── */
 
@@ -30,148 +32,125 @@ const LIFESTYLE_LINKS = [
 const CURRENCIES = ['USD', 'EUR', 'AED', 'GBP'];
 const LANGUAGES = ['EN', 'AR', 'ES', 'PT'];
 
-/* ─── Crest SVG ──────────────────────────────────────────────────────────────── */
+/* ─── User Menu ──────────────────────────────────────────────────────────────── */
 
-function Crest({ size = 52 }: { size?: number }) {
-  const g = 'var(--color-gold)';
-  const gl = 'var(--color-gold-light)';
+function NavUser() {
+  const [user, setUser] = useState<User | null>(null);
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const supabase = createClient();
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  if (!user) {
+    return (
+      <Link href="/auth" className="btn-gold" style={{ padding: '0.5rem 1.25rem', fontSize: '0.75rem' }}>
+        Sign In
+      </Link>
+    );
+  }
+
+  const initials = (user.email ?? 'U').slice(0, 2).toUpperCase();
+
   return (
-    <svg
-      width={size}
-      height={Math.round(size * 1.18)}
-      viewBox="0 0 80 94"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      {/* ── Crown ── */}
-      {/* Base band */}
-      <rect x="20" y="54" width="40" height="5" rx="1" fill={g} opacity="0.9" />
-      {/* Three points */}
-      <polygon points="22,54 26,44 30,54" fill={g} opacity="0.9" />
-      <polygon points="37,54 40,42 43,54" fill={gl} />
-      <polygon points="50,54 54,44 58,54" fill={g} opacity="0.9" />
-      {/* Crown jewels */}
-      <circle cx="40" cy="41" r="2.2" fill={gl} />
-      <circle cx="26" cy="43" r="1.5" fill={g} />
-      <circle cx="54" cy="43" r="1.5" fill={g} />
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-2 cursor-pointer"
+        aria-label="Account menu"
+      >
+        <span
+          className="flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold"
+          style={{ background: 'rgba(201,168,76,0.15)', border: '1px solid rgba(201,168,76,0.4)', color: 'var(--color-gold-light)' }}
+        >
+          {initials}
+        </span>
+      </button>
 
-      {/* ── Shield ── */}
-      {/* Shield outline — classic heater shape */}
-      <path
-        d="M13,58 L13,75 Q13,88 40,94 Q67,88 67,75 L67,58 Z"
-        fill="#0e0e10"
-        stroke={g}
-        strokeWidth="1.4"
-      />
-      {/* Horizontal partition (fess) */}
-      <line x1="13" y1="76" x2="67" y2="76" stroke={g} strokeWidth="0.8" opacity="0.6" />
-      {/* Vertical partition */}
-      <line x1="40" y1="58" x2="40" y2="94" stroke={g} strokeWidth="0.8" opacity="0.4" />
-
-      {/* ── Charge: top-left — stylised lion passant ── */}
-      {/* body */}
-      <path d="M20,64 Q23,61 27,63 Q30,65 29,70 Q27,73 23,72 Q18,70 20,64Z" fill={g} opacity="0.85" />
-      {/* head */}
-      <circle cx="28" cy="62" r="3" fill={g} opacity="0.85" />
-      {/* tail */}
-      <path d="M20,65 Q16,62 17,59 Q19,57 21,60" fill="none" stroke={g} strokeWidth="1.2" opacity="0.8" strokeLinecap="round" />
-      {/* front paw */}
-      <path d="M28,68 L31,70" stroke={g} strokeWidth="1.3" strokeLinecap="round" opacity="0.85" />
-
-      {/* ── Charge: top-right — fleur-de-lis ── */}
-      <path d="M50,60 Q50,57 53,56 Q56,57 56,60 Q56,63 53,64 Q50,63 50,60Z" fill={g} opacity="0.8" />
-      <path d="M53,64 L53,72" stroke={g} strokeWidth="1.4" strokeLinecap="round" opacity="0.8" />
-      <path d="M49,67 Q51,65 53,67 Q55,65 57,67" fill="none" stroke={g} strokeWidth="1" opacity="0.8" />
-      <path d="M51,71 Q50,69 53,68 Q56,69 55,71" fill={g} opacity="0.7" />
-
-      {/* ── Bottom field — three mullets (stars) ── */}
-      {[26, 40, 54].map((cx, i) => (
-        <g key={i} transform={`translate(${cx},82)`}>
-          {[0,72,144,216,288].map((a, j) => {
-            const r1 = 3.2, r2 = 1.4;
-            const rad = (a - 90) * Math.PI / 180;
-            const rad2 = (a - 90 + 36) * Math.PI / 180;
-            const x1 = r1 * Math.cos(rad), y1 = r1 * Math.sin(rad);
-            const x2 = r2 * Math.cos(rad2), y2 = r2 * Math.sin(rad2);
-            return j === 0
-              ? <path key={j} d={`M ${x1.toFixed(2)} ${y1.toFixed(2)}`} />
-              : null;
-          })}
-          <polygon
-            points={[0,1,2,3,4].map(j => {
-              const a1 = (j * 72 - 90) * Math.PI / 180;
-              const a2 = (j * 72 - 90 + 36) * Math.PI / 180;
-              return `${(3.2*Math.cos(a1)).toFixed(2)},${(3.2*Math.sin(a1)).toFixed(2)} ${(1.4*Math.cos(a2)).toFixed(2)},${(1.4*Math.sin(a2)).toFixed(2)}`;
-            }).join(' ')}
-            fill={gl}
-            opacity={i === 1 ? 1 : 0.75}
-          />
-        </g>
-      ))}
-
-      {/* ── Outer decorative border ── */}
-      <path
-        d="M13,58 L13,75 Q13,88 40,94 Q67,88 67,75 L67,58 Z"
-        fill="none"
-        stroke={gl}
-        strokeWidth="0.4"
-        opacity="0.35"
-        strokeDasharray="2 2"
-      />
-
-      {/* ── Mantling scrolls ── */}
-      <path d="M13,65 Q7,68 8,74 Q9,80 13,78" fill="none" stroke={g} strokeWidth="0.9" opacity="0.5" strokeLinecap="round" />
-      <path d="M67,65 Q73,68 72,74 Q71,80 67,78" fill="none" stroke={g} strokeWidth="0.9" opacity="0.5" strokeLinecap="round" />
-    </svg>
+      {open && (
+        <div
+          className="absolute right-0 top-full mt-3 w-48 rounded-[2px] overflow-hidden z-50"
+          style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }}
+        >
+          <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--color-border)' }}>
+            <p className="text-xs font-medium text-white truncate">{user.email}</p>
+          </div>
+          <Link
+            href="/dashboard"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2 px-4 py-2.5 text-xs text-[var(--color-gray)] hover:text-white hover:bg-[var(--color-surface-2)] transition-colors"
+          >
+            My Portfolio
+          </Link>
+          <form action="/auth/signout" method="POST" style={{ borderTop: '1px solid var(--color-border)' }}>
+            <button
+              type="submit"
+              className="w-full text-left px-4 py-2.5 text-xs text-[var(--color-gray)] hover:text-white hover:bg-[var(--color-surface-2)] transition-colors cursor-pointer"
+            >
+              Sign Out
+            </button>
+          </form>
+        </div>
+      )}
+    </div>
   );
 }
 
 /* ─── Logo ───────────────────────────────────────────────────────────────────── */
 
+/* ─── Logo ───────────────────────────────────────────────────────────────────── */
+
 function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-3 group focus-visible:outline-none" aria-label="Prestoni — Home">
-      {/* Crest */}
-      <div className="transition-transform duration-500 group-hover:scale-105 shrink-0">
-        <Crest size={46} />
-      </div>
-
-      {/* Wordmark */}
-      <div className="flex flex-col gap-1">
-        <span
-          style={{
-            fontFamily: "var(--font-cinzel-decorative, 'Cinzel Decorative', Georgia, serif)",
-            fontSize: '1.1rem',
-            fontWeight: 700,
-            color: 'var(--color-gold-light)',
-            letterSpacing: '0.2em',
-            lineHeight: 1,
-          }}
-        >
-          PRESTONI
-        </span>
-        <span
-          style={{
-            fontFamily: "var(--font-cinzel, 'Cinzel', Georgia, serif)",
-            fontSize: '0.5rem',
-            color: 'var(--color-gray)',
-            letterSpacing: '0.28em',
-            lineHeight: 1,
-            textTransform: 'uppercase',
-          }}
-        >
-          Global Luxury Properties
-        </span>
-        <span
-          style={{
-            display: 'block',
-            height: '1px',
-            background: 'linear-gradient(90deg, var(--color-gold) 0%, rgba(201,168,76,0.3) 70%, transparent 100%)',
-          }}
-          aria-hidden="true"
-        />
-      </div>
+    <Link href="/" className="flex flex-col focus-visible:outline-none" aria-label="Prestoni — Home">
+      <span
+        style={{
+          fontFamily: "var(--font-cinzel-decorative, 'Cinzel Decorative', Georgia, serif)",
+          fontSize: '1.1rem',
+          fontWeight: 700,
+          color: 'var(--color-gold-light)',
+          letterSpacing: '0.2em',
+          lineHeight: 1,
+        }}
+      >
+        PRESTONI
+      </span>
+      <span
+        style={{
+          fontFamily: "var(--font-cinzel, 'Cinzel', Georgia, serif)",
+          fontSize: '0.5rem',
+          color: 'var(--color-gray)',
+          letterSpacing: '0.28em',
+          lineHeight: 1,
+          textTransform: 'uppercase',
+          marginTop: '3px',
+        }}
+      >
+        Global Luxury Assets
+      </span>
+      <span
+        style={{
+          display: 'block',
+          height: '1px',
+          marginTop: '3px',
+          background: 'linear-gradient(90deg, var(--color-gold) 0%, rgba(201,168,76,0.3) 70%, transparent 100%)',
+        }}
+        aria-hidden="true"
+      />
     </Link>
   );
 }
@@ -564,19 +543,19 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </div>
 
           <Link
-            href="/signin"
+            href="/dashboard"
             onClick={onClose}
             className="btn-outline text-center w-full"
           >
-            Sign In
+            My Portfolio
           </Link>
 
           <Link
-            href="/list-property"
+            href="/auth"
             onClick={onClose}
             className="btn-gold text-center w-full"
           >
-            List Property
+            Sign In
           </Link>
         </div>
       </div>
@@ -652,12 +631,7 @@ export default function Navbar() {
               <CurrencySelector />
               <LanguageSelector />
               <div className="w-px h-5 bg-[var(--color-border)] mx-1" aria-hidden="true" />
-              <Link href="/signin" className="btn-outline" style={{ padding: '0.5rem 1.25rem', fontSize: '0.75rem' }}>
-                Sign In
-              </Link>
-              <Link href="/list-property" className="btn-gold" style={{ padding: '0.5rem 1.25rem', fontSize: '0.75rem' }}>
-                List Property
-              </Link>
+              <NavUser />
             </div>
 
             {/* Mobile Hamburger */}

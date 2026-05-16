@@ -6,9 +6,21 @@ import SectionHeader from '@/components/shared/SectionHeader';
 import LuxuryAssetCard from '@/components/shared/LuxuryAssetCard';
 
 export const metadata: Metadata = {
-  title: 'Investment-Grade Timepieces',
+  title: 'Investment-Grade Watches & Timepieces',
   description:
-    'Certified pre-owned watches and horological masterpieces — each authenticated, verified, and priced against current market comparables.',
+    'Buy certified pre-owned investment watches — Patek Philippe Nautilus, Richard Mille, Audemars Piguet Royal Oak, Rolex Daytona. Every timepiece authenticated with live price history and market comparables.',
+  keywords: [
+    'investment watches for sale', 'Patek Philippe Nautilus', 'Richard Mille for sale',
+    'Audemars Piguet Royal Oak', 'Rolex Daytona', 'luxury watches', 'certified pre-owned watches',
+    'F.P. Journe', 'Lange Sohne', 'watch investment', 'horological masterpieces',
+  ],
+  openGraph: {
+    title: 'Investment-Grade Watches & Timepieces | Prestoni',
+    description: 'Buy certified pre-owned investment watches — Patek Philippe, Richard Mille, AP, Rolex. Every piece authenticated with live price history.',
+    images: [{ url: 'https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=1200', width: 1200, height: 630, alt: 'Luxury Watches — Prestoni' }],
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image', title: 'Investment-Grade Watches | Prestoni', description: 'Buy certified pre-owned investment watches with live price history.' },
 };
 
 export default function WatchesPage() {

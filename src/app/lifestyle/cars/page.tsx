@@ -6,9 +6,21 @@ import SectionHeader from '@/components/shared/SectionHeader';
 import LuxuryAssetCard from '@/components/shared/LuxuryAssetCard';
 
 export const metadata: Metadata = {
-  title: 'Exotic Cars',
+  title: 'Exotic & Hypercar Collection',
   description:
-    'Hypercars, grand tourers & investment-grade collector automobiles — every example verified and authenticated by our specialists.',
+    'Buy rare hypercars, grand tourers, and investment-grade collector automobiles — Bugatti, Pagani, Rolls-Royce, Ferrari, Lamborghini. Every example verified, authenticated, and priced against live market comparables.',
+  keywords: [
+    'hypercars for sale', 'exotic cars', 'Bugatti for sale', 'Pagani for sale',
+    'Rolls-Royce Phantom', 'Ferrari Purosangue', 'Lamborghini Revuelto',
+    'collector cars', 'investment cars', 'rare automobiles', 'luxury cars for sale',
+  ],
+  openGraph: {
+    title: 'Exotic & Hypercar Collection | Prestoni',
+    description: 'Buy rare hypercars and investment-grade collector automobiles. Every example verified, authenticated, and priced against live market comparables.',
+    images: [{ url: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200', width: 1200, height: 630, alt: 'Exotic Cars — Prestoni' }],
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image', title: 'Exotic & Hypercar Collection | Prestoni', description: 'Buy rare hypercars and investment-grade collector automobiles.' },
 };
 
 export default function CarsPage() {

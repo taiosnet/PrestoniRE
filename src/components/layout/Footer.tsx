@@ -50,41 +50,40 @@ const FOOTER_COLUMNS = [
     heading: 'Company',
     links: [
       { label: 'About Us', href: '/about' },
-      { label: 'Careers', href: '/careers' },
+      { label: 'Concierge', href: '/concierge' },
       { label: 'Press & Media', href: '/press' },
       { label: 'Contact', href: '/contact' },
       { label: 'Partnerships', href: '/partnerships' },
     ],
   },
   {
-    heading: 'Properties',
+    heading: 'Real Estate',
     links: [
       { label: 'Buy Luxury', href: '/buy' },
-      { label: 'Rent', href: '/rent' },
       { label: 'Pre-Construction', href: '/pre-construction' },
+      { label: 'Global Markets', href: '/markets' },
       { label: 'Developers', href: '/developers' },
       { label: 'Off-Plan', href: '/off-plan' },
     ],
   },
   {
-    heading: 'Markets',
+    heading: 'Lifestyle',
     links: [
-      { label: 'Dubai', href: '/markets/dubai' },
-      { label: 'Miami', href: '/markets/miami' },
-      { label: 'Lisbon', href: '/markets/lisbon' },
-      { label: 'Marbella', href: '/markets/marbella' },
-      { label: 'London', href: '/markets/london' },
-      { label: 'Bali', href: '/markets/bali' },
+      { label: 'Exotic Cars', href: '/lifestyle/cars' },
+      { label: 'Timepieces', href: '/lifestyle/watches' },
+      { label: 'Yachts', href: '/lifestyle/yachts' },
+      { label: 'Private Jets', href: '/lifestyle/jets' },
+      { label: 'Art & Collectibles', href: '/lifestyle/art' },
     ],
   },
   {
-    heading: 'Resources',
+    heading: 'My Account',
     links: [
-      { label: 'Blog', href: '/blog' },
+      { label: 'Sign In', href: '/auth' },
+      { label: 'My Portfolio', href: '/dashboard' },
+      { label: 'Saved Assets', href: '/dashboard' },
       { label: 'Market Reports', href: '/reports' },
       { label: 'Investment Guide', href: '/guides/investment' },
-      { label: 'Agent Portal', href: '/agents' },
-      { label: 'API & Data', href: '/api' },
     ],
   },
 ];
@@ -127,7 +126,7 @@ export default function Footer() {
                 className="text-[0.6rem] tracking-[0.3em] uppercase mt-1 leading-none"
                 style={{ color: 'var(--color-gold)', fontFamily: 'Inter, sans-serif' }}
               >
-                Global Luxury Properties
+                Global Luxury Assets
               </div>
               <div
                 className="mt-1.5 h-px"
@@ -144,7 +143,7 @@ export default function Footer() {
               className="text-sm leading-relaxed max-w-[240px]"
               style={{ color: 'var(--color-gray)', fontFamily: 'Inter, sans-serif' }}
             >
-              The world&apos;s most discerning buyers trust Prestoni to discover, evaluate, and acquire the finest properties across 32 countries.
+              The world&apos;s most discerning buyers trust Prestoni to discover, evaluate, and acquire the finest luxury assets across 32 countries.
             </p>
 
             {/* Social Icons — pure CSS hover via group */}

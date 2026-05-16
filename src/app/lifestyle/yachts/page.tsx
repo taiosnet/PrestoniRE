@@ -6,9 +6,21 @@ import SectionHeader from '@/components/shared/SectionHeader';
 import LuxuryAssetCard from '@/components/shared/LuxuryAssetCard';
 
 export const metadata: Metadata = {
-  title: 'Superyachts & Sport Yachts',
+  title: 'Superyachts & Sport Yachts for Sale',
   description:
-    'Sport yachts, superyachts, and full custom commissions — new build and brokerage listings from the world\'s finest shipyards.',
+    'Buy superyachts and sport yachts from Feadship, Sunseeker, Benetti, and Pershing. New build commissions and brokerage listings — charter management available. Monaco, Dubai, Marbella.',
+  keywords: [
+    'superyachts for sale', 'yachts for sale', 'Feadship', 'Sunseeker', 'Benetti', 'Pershing',
+    'buy a yacht', 'superyacht brokerage', 'luxury yacht', 'charter yacht', 'motor yacht',
+    'Monaco yacht', 'Dubai marina yacht',
+  ],
+  openGraph: {
+    title: 'Superyachts & Sport Yachts for Sale | Prestoni',
+    description: 'Buy superyachts and sport yachts from the world\'s finest shipyards. Charter management available.',
+    images: [{ url: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1200', width: 1200, height: 630, alt: 'Superyachts — Prestoni' }],
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image', title: 'Superyachts for Sale | Prestoni', description: 'Buy superyachts and sport yachts from the world\'s finest shipyards.' },
 };
 
 export default function YachtsPage() {

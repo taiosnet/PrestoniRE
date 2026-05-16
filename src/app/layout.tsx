@@ -39,22 +39,25 @@ const cinzelDecorative = Cinzel_Decorative({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Prestoni | Global Luxury Properties',
+    default: 'Prestoni | Global Luxury Assets',
     template: '%s | Prestoni',
   },
   description:
-    "Discover the world's finest luxury properties and off-plan developments across 32 countries. Curated for discerning buyers — Dubai, Miami, Marbella, London, Lisbon, Bali and beyond.",
+    "Discover the world's finest luxury assets across 32 countries — ultra-prime real estate, exotic cars, investment-grade watches, superyachts, and private jets. Curated for discerning buyers.",
   keywords: [
+    'luxury assets',
     'luxury real estate',
+    'exotic cars for sale',
+    'investment grade watches',
+    'superyachts for sale',
+    'private jets for sale',
     'ultra prime property',
     'off-plan investments',
-    'pre-construction villas',
-    'Dubai luxury apartments',
-    'Miami penthouses',
-    'London prime property',
-    'Marbella villas',
-    'Golden Visa property',
-    'HNWI real estate',
+    'Dubai luxury',
+    'Monaco real estate',
+    'HNWI portfolio',
+    'luxury lifestyle',
+    'Prestoni',
   ],
   authors: [{ name: 'Prestoni Holdings' }],
   creator: 'Prestoni Holdings',
@@ -69,23 +72,23 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     url: 'https://prestoni.com',
     siteName: 'Prestoni',
-    title: 'Prestoni | Global Luxury Properties',
+    title: 'Prestoni | Global Luxury Assets',
     description:
-      "The world's most discerning buyers trust Prestoni to discover, evaluate, and acquire the finest properties across 32 countries.",
+      "The world's most discerning buyers trust Prestoni to discover, evaluate, and acquire the finest luxury assets across 32 countries.",
     images: [
       {
         url: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200',
         width: 1200,
         height: 630,
-        alt: 'Prestoni — Global Luxury Properties',
+        alt: 'Prestoni — Global Luxury Assets',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Prestoni | Global Luxury Properties',
+    title: 'Prestoni | Global Luxury Assets',
     description:
-      "Discover the world's finest luxury properties and off-plan developments across 32 countries.",
+      "Discover the world's finest luxury assets — real estate, exotic cars, watches, yachts, and private jets across 32 countries.",
     images: ['https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200'],
     creator: '@prestoni',
   },

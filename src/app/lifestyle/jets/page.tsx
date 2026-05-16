@@ -6,9 +6,21 @@ import SectionHeader from '@/components/shared/SectionHeader';
 import LuxuryAssetCard from '@/components/shared/LuxuryAssetCard';
 
 export const metadata: Metadata = {
-  title: 'Private Aviation',
+  title: 'Private Jets for Sale & Fractional Ownership',
   description:
-    'Ultra-long-range jets, turboprops, and fractional ownership programs — acquisition, management, and charter advisory from NBAA-certified specialists.',
+    'Buy private jets or join fractional ownership programs — Gulfstream G700, Bombardier Global 7500, Dassault Falcon 10X. Ultra-long-range business aviation with NBAA-certified acquisition advisory.',
+  keywords: [
+    'private jets for sale', 'buy a private jet', 'Gulfstream G700', 'Bombardier Global 7500',
+    'Dassault Falcon 10X', 'fractional jet ownership', 'business aviation', 'private jet acquisition',
+    'UHNW aviation', 'ultra long range jet',
+  ],
+  openGraph: {
+    title: 'Private Jets for Sale & Fractional Ownership | Prestoni',
+    description: 'Buy Gulfstream G700, Bombardier Global 7500, and Dassault Falcon 10X. Fractional ownership programs available.',
+    images: [{ url: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200', width: 1200, height: 630, alt: 'Private Jets — Prestoni' }],
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image', title: 'Private Jets for Sale | Prestoni', description: 'Buy Gulfstream G700, Bombardier Global 7500, Dassault Falcon 10X.' },
 };
 
 export default function JetsPage() {
