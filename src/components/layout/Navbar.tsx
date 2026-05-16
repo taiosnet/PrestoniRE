@@ -19,6 +19,14 @@ const NAV_LINKS: NavLink[] = [
   { label: 'List Property', href: '/list-property' },
 ];
 
+const LIFESTYLE_LINKS = [
+  { label: 'Exotic Cars', href: '/lifestyle/cars', icon: '🚗' },
+  { label: 'Timepieces', href: '/lifestyle/watches', icon: '⌚' },
+  { label: 'Yachts', href: '/lifestyle/yachts', icon: '🛥️' },
+  { label: 'Private Jets', href: '/lifestyle/jets', icon: '✈️' },
+  { label: 'Art & Collectibles', href: '/lifestyle/art', icon: '🎨' },
+];
+
 const CURRENCIES = ['USD', 'EUR', 'AED', 'GBP'];
 const LANGUAGES = ['EN', 'AR', 'ES', 'PT'];
 
@@ -316,6 +324,114 @@ function LanguageSelector() {
   );
 }
 
+/* ─── Lifestyle Dropdown ─────────────────────────────────────────────────────── */
+
+function LifestyleDropdown() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        onMouseEnter={() => setOpen(true)}
+        className={cn(
+          'nav-link text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-200 flex items-center gap-1',
+          open ? 'text-[var(--color-gold-light)]' : 'text-[var(--color-gray)] hover:text-white'
+        )}
+        aria-haspopup="true"
+        aria-expanded={open}
+      >
+        Lifestyle
+        <svg
+          className={cn('w-3 h-3 transition-transform duration-200', open && 'rotate-180')}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {open && (
+        <div
+          className="absolute left-0 top-full mt-3 w-52 rounded-[2px] overflow-hidden z-50"
+          style={{
+            background: 'var(--color-surface)',
+            border: '1px solid var(--color-border)',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
+          }}
+          onMouseLeave={() => setOpen(false)}
+          role="menu"
+        >
+          {/* Header */}
+          <div
+            className="px-4 py-2.5 flex items-center justify-between"
+            style={{ borderBottom: '1px solid var(--color-border)' }}
+          >
+            <span className="text-[0.6rem] font-semibold tracking-[0.2em] uppercase" style={{ color: 'var(--color-gold)' }}>
+              Lifestyle
+            </span>
+            <Link
+              href="/lifestyle"
+              className="text-[0.6rem] tracking-wider"
+              style={{ color: 'var(--color-muted)' }}
+              onClick={() => setOpen(false)}
+            >
+              View all →
+            </Link>
+          </div>
+
+          {LIFESTYLE_LINKS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              role="menuitem"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 px-4 py-2.5 text-sm transition-all duration-150 group"
+              style={{ color: 'var(--color-gray)' }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.background = 'var(--color-surface-2)';
+                (e.currentTarget as HTMLElement).style.color = 'white';
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.background = '';
+                (e.currentTarget as HTMLElement).style.color = 'var(--color-gray)';
+              }}
+            >
+              <span className="text-base leading-none" aria-hidden="true">{item.icon}</span>
+              <span className="text-xs font-medium tracking-wide">{item.label}</span>
+            </Link>
+          ))}
+
+          <div style={{ borderTop: '1px solid var(--color-border)' }}>
+            <Link
+              href="/concierge"
+              role="menuitem"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 px-4 py-2.5 text-xs font-medium tracking-wide transition-colors duration-150"
+              style={{ color: 'var(--color-gold)' }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(201,168,76,0.06)'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = ''; }}
+            >
+              ✦ White-Glove Concierge
+            </Link>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ─── Mobile Menu ────────────────────────────────────────────────────────────── */
 
 interface MobileMenuProps {
@@ -402,6 +518,39 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </span>
             </Link>
           ))}
+
+          {/* Lifestyle section */}
+          <div
+            className="mt-3 pt-3"
+            style={{ borderTop: '1px solid var(--color-border)' }}
+          >
+            <p className="px-4 pb-2 text-[0.6rem] font-semibold tracking-[0.2em] uppercase" style={{ color: 'var(--color-gold)' }}>
+              Lifestyle
+            </p>
+            {LIFESTYLE_LINKS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={onClose}
+                className={cn(
+                  'flex items-center gap-3 px-4 py-2.5 rounded-[2px] text-sm',
+                  'text-[var(--color-gray)] hover:text-white hover:bg-[var(--color-surface-2)]',
+                  'transition-all duration-200'
+                )}
+              >
+                <span className="text-base" aria-hidden="true">{item.icon}</span>
+                <span className="text-xs font-medium tracking-wide">{item.label}</span>
+              </Link>
+            ))}
+            <Link
+              href="/concierge"
+              onClick={onClose}
+              className="flex items-center gap-2 px-4 py-2.5 text-xs font-medium tracking-wide"
+              style={{ color: 'var(--color-gold)' }}
+            >
+              ✦ Concierge
+            </Link>
+          </div>
         </nav>
 
         {/* Bottom Section */}
@@ -477,7 +626,17 @@ export default function Navbar() {
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
-              {NAV_LINKS.map((link) => (
+              {NAV_LINKS.slice(0, 3).map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="nav-link text-sm font-medium tracking-[0.08em] uppercase text-[var(--color-gray)] hover:text-white transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <LifestyleDropdown />
+              {NAV_LINKS.slice(3).map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}

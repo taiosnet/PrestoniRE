@@ -3,12 +3,41 @@ import Link from 'next/link';
 import { Search, ShieldCheck, TrendingUp } from 'lucide-react';
 
 import { FEATURED_PROPERTIES, PRE_CONSTRUCTION_PROJECTS, MARKETS, TESTIMONIALS, STATS } from '@/lib/data';
-import { formatPrice } from '@/lib/utils';
+import { LIFESTYLE_CATEGORIES } from '@/lib/lifestyle-data';
 import PropertyCard from '@/components/shared/PropertyCard';
 import ProjectCard from '@/components/shared/ProjectCard';
 import SectionHeader from '@/components/shared/SectionHeader';
 import HeroSearch from '@/components/sections/HeroSearch';
+import HeroSlideshow from '@/components/sections/HeroSlideshow';
 import { Button } from '@/components/ui/button';
+
+const HERO_SLIDES = [
+  {
+    src: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600',
+    alt: 'Luxury beachfront villa — Prestoni Global Properties',
+    label: 'Real Estate',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1600',
+    alt: 'Exotic hypercar — Prestoni Lifestyle',
+    label: 'Exotic Cars',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1600',
+    alt: 'Superyacht at sea — Prestoni Lifestyle',
+    label: 'Yachts',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=1600',
+    alt: 'Luxury timepiece — Prestoni Lifestyle',
+    label: 'Timepieces',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600',
+    alt: 'Private jet — Prestoni Lifestyle',
+    label: 'Private Aviation',
+  },
+];
 
 /* ─── Hero Trust Stats ───────────────────────────────────────────────────────── */
 
@@ -55,25 +84,9 @@ export default function HomePage() {
         aria-label="Hero"
         className="relative flex flex-col items-center justify-center min-h-screen w-full overflow-hidden -mt-20"
       >
-        {/* Background image */}
+        {/* Background slideshow */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600"
-            alt="Luxury beachfront villa — Prestoni Global Properties"
-            fill
-            sizes="100vw"
-            className="object-cover object-center"
-            priority
-          />
-          {/* Dark overlay */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'linear-gradient(to bottom, rgba(10,10,11,0.55) 0%, rgba(10,10,11,0.62) 60%, rgba(10,10,11,0.85) 100%)',
-            }}
-            aria-hidden="true"
-          />
+          <HeroSlideshow slides={HERO_SLIDES} interval={5000} />
         </div>
 
         {/* Content */}
@@ -359,7 +372,121 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════════ */}
-      {/* E. HOW IT WORKS                                                         */}
+      {/* E. BEYOND THE ESTATE — LIFESTYLE CATEGORIES                            */}
+      {/* ════════════════════════════════════════════════════════════════════════ */}
+      <section
+        aria-label="The Complete Lifestyle"
+        className="py-20 lg:py-28 relative"
+        style={{ background: 'var(--color-surface)' }}
+      >
+        {/* Gold top accent */}
+        <div
+          className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+          style={{
+            background: 'linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.2) 50%, transparent 100%)',
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col gap-12">
+          <SectionHeader
+            eyebrow="The Complete Lifestyle"
+            title="Beyond the Estate"
+            subtitle="Curate every element of your world — from the property to the car in the garage, the watch on your wrist, and the yacht in the marina."
+            align="center"
+            action={{ label: 'Explore Lifestyle', href: '/lifestyle' }}
+          />
+
+          {/* Category cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {LIFESTYLE_CATEGORIES.map((cat) => (
+              <Link
+                key={cat.id}
+                href={cat.href}
+                className="group relative overflow-hidden rounded-[2px] flex flex-col"
+                style={{
+                  aspectRatio: '3/4',
+                  border: '1px solid var(--color-border)',
+                  textDecoration: 'none',
+                }}
+                aria-label={`Explore ${cat.label}`}
+              >
+                {/* Background */}
+                <Image
+                  src={cat.image}
+                  alt={cat.label}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-108"
+                  style={{ transition: 'transform 0.7s ease' }}
+                />
+
+                {/* Gradient overlay */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(to top, rgba(10,10,11,0.92) 0%, rgba(10,10,11,0.35) 55%, rgba(10,10,11,0.05) 100%)',
+                  }}
+                  aria-hidden="true"
+                />
+
+                {/* Gold border hover */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  style={{ boxShadow: 'inset 0 0 0 1px rgba(201,168,76,0.5)' }}
+                  aria-hidden="true"
+                />
+
+                {/* Content */}
+                <div className="absolute inset-0 flex flex-col justify-end p-4">
+                  <p
+                    className="text-[0.6rem] font-semibold tracking-[0.18em] uppercase mb-1"
+                    style={{ color: 'var(--color-gold)' }}
+                  >
+                    {cat.count} listings
+                  </p>
+                  <h3
+                    className="text-base font-normal leading-[1.2] text-white"
+                    style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+                  >
+                    {cat.label}
+                  </h3>
+                  <p
+                    className="text-[0.65rem] leading-snug mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ color: 'var(--color-gray)' }}
+                  >
+                    {cat.description}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Concierge strip */}
+          <div
+            className="flex flex-col sm:flex-row items-center justify-between gap-4 px-8 py-5 rounded-[2px]"
+            style={{
+              background: 'rgba(201,168,76,0.04)',
+              border: '1px solid rgba(201,168,76,0.2)',
+            }}
+          >
+            <div>
+              <p className="text-sm font-medium text-white">
+                Looking for something specific?
+              </p>
+              <p className="text-xs mt-0.5" style={{ color: 'var(--color-gray)' }}>
+                Our lifestyle specialists source private-market assets not listed anywhere online.
+              </p>
+            </div>
+            <Link href="/concierge" className="btn-gold shrink-0">
+              Speak with a Concierge
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════════════ */}
+      {/* G. HOW IT WORKS                                                         */}
       {/* ════════════════════════════════════════════════════════════════════════ */}
       <section
         aria-label="The Prestoni Difference"
@@ -436,7 +563,7 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════════ */}
-      {/* F. TESTIMONIALS                                                         */}
+      {/* H. TESTIMONIALS                                                         */}
       {/* ════════════════════════════════════════════════════════════════════════ */}
       <section
         aria-label="Client Stories"
@@ -531,7 +658,7 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════════ */}
-      {/* G. CTA BANNER                                                           */}
+      {/* I. CTA BANNER                                                           */}
       {/* ════════════════════════════════════════════════════════════════════════ */}
       <section
         aria-label="Call to Action"
