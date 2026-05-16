@@ -130,38 +130,36 @@ function Logo() {
       </div>
 
       {/* Wordmark */}
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-1">
         <span
-          className="leading-none tracking-[0.18em] transition-colors duration-300"
           style={{
-            fontFamily: "'Cinzel Decorative', 'Cinzel', 'Cormorant Garamond', Georgia, serif",
-            fontSize: '1.15rem',
+            fontFamily: "var(--font-cinzel-decorative, 'Cinzel Decorative', Georgia, serif)",
+            fontSize: '1.1rem',
             fontWeight: 700,
             color: 'var(--color-gold-light)',
-            textShadow: '0 0 20px rgba(232,201,122,0.25)',
-            letterSpacing: '0.22em',
+            letterSpacing: '0.2em',
+            lineHeight: 1,
           }}
         >
           PRESTONI
         </span>
         <span
-          className="mt-1 leading-none tracking-[0.28em] uppercase"
           style={{
-            fontFamily: "'Cinzel', Georgia, serif",
-            fontSize: '0.52rem',
+            fontFamily: "var(--font-cinzel, 'Cinzel', Georgia, serif)",
+            fontSize: '0.5rem',
             color: 'var(--color-gray)',
-            letterSpacing: '0.3em',
+            letterSpacing: '0.28em',
+            lineHeight: 1,
+            textTransform: 'uppercase',
           }}
         >
-          Est. Properties
+          Global Luxury Properties
         </span>
-        {/* Gold rule */}
         <span
-          className="block mt-1.5"
           style={{
+            display: 'block',
             height: '1px',
             background: 'linear-gradient(90deg, var(--color-gold) 0%, rgba(201,168,76,0.3) 70%, transparent 100%)',
-            width: '100%',
           }}
           aria-hidden="true"
         />

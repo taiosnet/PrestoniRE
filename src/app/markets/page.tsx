@@ -74,7 +74,7 @@ export default function MarketsPage() {
     >
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
       <section
-        className="relative py-24 sm:py-32 overflow-hidden"
+        className="relative pt-36 pb-24 sm:pt-40 sm:pb-32 overflow-hidden"
         style={{ backgroundColor: 'var(--color-surface-2)' }}
       >
         {/* Subtle grid texture */}

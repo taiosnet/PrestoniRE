@@ -1,7 +1,39 @@
 import type { Metadata, Viewport } from 'next';
+import { Inter, Cormorant_Garamond, Cinzel, Cinzel_Decorative } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+
+/* ─── Fonts (self-hosted via next/font — no render-blocking request) ─────────── */
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+  display: 'swap',
+});
+
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-cinzel',
+  display: 'swap',
+});
+
+const cinzelDecorative = Cinzel_Decorative({
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  variable: '--font-cinzel-decorative',
+  display: 'swap',
+});
 
 /* ─── Metadata ───────────────────────────────────────────────────────────────── */
 
@@ -57,9 +89,7 @@ export const metadata: Metadata = {
     images: ['https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200'],
     creator: '@prestoni',
   },
-  icons: {
-    icon: '/favicon.ico',
-  },
+  icons: { icon: '/favicon.ico' },
 };
 
 export const viewport: Viewport = {
@@ -70,26 +100,16 @@ export const viewport: Viewport = {
 
 /* ─── Root Layout ────────────────────────────────────────────────────────────── */
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <head>
-        {/* Preconnect to Google Fonts for performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
+    <html
+      lang="en"
+      className={`h-full antialiased ${inter.variable} ${cormorant.variable} ${cinzel.variable} ${cinzelDecorative.variable}`}
+    >
       <body
         className="min-h-full flex flex-col"
-        style={{
-          backgroundColor: 'var(--color-bg)',
-          color: 'var(--color-white)',
-        }}
+        style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-white)' }}
       >
-        {/* Skip to main content for accessibility */}
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:rounded-[2px]"

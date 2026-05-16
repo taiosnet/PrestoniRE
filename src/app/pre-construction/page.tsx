@@ -44,7 +44,7 @@ export default function PreConstructionPage() {
     <div className="min-h-screen" style={{ background: 'var(--color-bg)' }}>
 
       {/* ── Hero Banner ───────────────────────────────────────────────────── */}
-      <section className="relative h-[520px] md:h-[600px] flex items-center overflow-hidden">
+      <section className="relative h-[560px] md:h-[640px] flex items-end overflow-hidden pb-16 pt-24">
         {/* Background image */}
         <Image
           src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600"
